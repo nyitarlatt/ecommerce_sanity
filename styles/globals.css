@@ -752,5 +752,6 @@ span.text-red {
   .btn-container {
     width: 300px;
     margin: auto;
+    text-align: center;
   }
 }
