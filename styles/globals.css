@@ -476,6 +476,10 @@ span.text-red {
   margin-top: 10px;
   align-items: center;
 }
+.buttons {
+  user-select: none;
+}
+
 .product-detail-desc .buttons {
   display: flex;
   gap: 30px;
@@ -529,6 +533,7 @@ span.text-red {
 .quantity-desc .num {
   border-right: 1px solid gray;
   font-size: 20px;
+  user-select: none;
 }
 .quantity-desc .plus {
   color: rgb(49, 168, 49);
