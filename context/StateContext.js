@@ -51,10 +51,20 @@ export const StateContext = ({ children }) => {
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
     } else if (value === "dec") {
       if (foundProduct.quantity > 1) {
+        //
         setCartItems([
-          ...newCartItems,
-          { ...foundProduct, quantity: foundProduct.quantity - 1 },
+          ...cartItems.slice(0, index),
+          {
+            ...foundProduct,
+            quantity: foundProduct.quantity - 1,
+          },
+          ...cartItems.slice(index + 1, cartItems.length),
         ]);
+        //
+        // setCartItems([
+        //   ...newCartItems,
+        //   { ...foundProduct, quantity: foundProduct.quantity - 1 },
+        // ]);
         setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
       }
@@ -63,7 +73,7 @@ export const StateContext = ({ children }) => {
 
   const onRemove = (product) => {
     foundProduct = cartItems.find((item) => item._id === product._id);
-    const newCartItems = cartItems.filter((item) => item._id !== item._id);
+    const newCartItems = cartItems.filter((item) => item._id !== product._id);
 
     setTotalPrice(
       (prevTotalPrice) =>
