@@ -43,9 +43,17 @@ export const StateContext = ({ children }) => {
     const newCartItems = cartItems.filter((item) => item._id !== id);
 
     if (value === "inc") {
+      // setCartItems([
+      //   ...newCartItems,
+      //   { ...foundProduct, quantity: foundProduct.quantity + 1 },
+      // ]);
       setCartItems([
-        ...newCartItems,
-        { ...foundProduct, quantity: foundProduct.quantity + 1 },
+        ...cartItems.slice(0, index),
+        {
+          ...foundProduct,
+          quantity: foundProduct.quantity + 1,
+        },
+        ...cartItems.slice(index + 1, cartItems.length),
       ]);
       setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
